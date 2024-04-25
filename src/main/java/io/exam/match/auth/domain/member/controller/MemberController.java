@@ -1,7 +1,7 @@
 package io.exam.match.auth.domain.member.controller;
 
-import io.exam.match.auth.domain.member.application.dto.request.MemberJoinRequest;
-import io.exam.match.auth.domain.member.application.dto.response.SimpleJoinResponse;
+import io.exam.match.auth.domain.member.persist.domain.dto.request.MemberJoinRequest;
+import io.exam.match.auth.domain.member.persist.domain.dto.response.SimpleJoinResponse;
 import io.exam.match.auth.domain.member.application.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

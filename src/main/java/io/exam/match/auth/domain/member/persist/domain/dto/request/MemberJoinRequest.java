@@ -1,4 +1,4 @@
-package io.exam.match.auth.domain.member.application.dto.request;
+package io.exam.match.auth.domain.member.persist.domain.dto.request;
 
 import io.exam.match.auth.domain.member.persist.domain.Member;
 import io.exam.match.auth.domain.member.persist.domain.enums.RoleType;

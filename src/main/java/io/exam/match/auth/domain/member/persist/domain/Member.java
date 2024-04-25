@@ -1,6 +1,7 @@
 package io.exam.match.auth.domain.member.persist.domain;
 
 import io.exam.match.auth.domain.member.persist.domain.enums.RoleType;
+import io.exam.match.auth.global.domain.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,9 +13,9 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Builder
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +32,8 @@ public class Member {
     private LocalDate birth;
 
     private RoleType roleType;
+
+    public void exchangeEncodedPassword(final String password) {
+        this.password = password;
+    }
 }

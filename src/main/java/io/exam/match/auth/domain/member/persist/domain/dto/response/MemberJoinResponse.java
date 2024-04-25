@@ -1,4 +1,4 @@
-package io.exam.match.auth.domain.member.application.dto.response;
+package io.exam.match.auth.domain.member.persist.domain.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
