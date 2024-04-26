@@ -21,6 +21,12 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone : http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
+
+jwt:
+  expression :
+    secret: 1d903dfd54cabb06064e2c6e174682100f573069690a75ad1315617040a54f65
+    access-token-expire: 1800
+    refresh-token-expire: 86000
