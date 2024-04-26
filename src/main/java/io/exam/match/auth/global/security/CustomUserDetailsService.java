@@ -1,6 +1,8 @@
 package io.exam.match.auth.global.security;
 
+import io.exam.match.auth.domain.member.exception.MemberNotFoundException;
 import io.exam.match.auth.domain.member.persist.repository.MemberRepository;
+import io.exam.match.auth.global.error.exception.GlobalExceptionTypes;
 import io.exam.match.auth.global.security.principal.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +19,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public CustomUserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
          return memberRepository.findDetailsByLoginId(loginId)
-                 .orElseThrow(() -> new RuntimeException("Member Not Found"));
+                 .orElseThrow(() -> new MemberNotFoundException(GlobalExceptionTypes.MEMBER_NOT_FOUND));
     }
 }
