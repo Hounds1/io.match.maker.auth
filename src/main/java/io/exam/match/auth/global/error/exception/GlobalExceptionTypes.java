@@ -20,9 +20,15 @@ public enum GlobalExceptionTypes {
     MEMBER_DELETE_FAILED(500, "1005", "Tried to delete a member, but the deletion process failed. The member may not exist."),
 
     /**
+     * Auth (8)
+     */
+    PASSWORD_MISMATCHED(403, "8000", "Access Denied to account."),
+
+    /**
      * JWT (9)
      */
-    TOKEN_NOT_FOUND(400, "9001", "Tried to validate token, but validation failed due to an unknown reason.");
+    TOKEN_NOT_FOUND(400, "9001", "Tried to validate token, but validation failed due to an unknown reason."),
+    INVALID_JWT_TOKEN(403, "9002", "Invalid JWT Token has been detected.");
 
     private final int code;
     private final String status;

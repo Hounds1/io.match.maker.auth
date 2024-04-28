@@ -1,6 +1,5 @@
 package io.exam.match.auth.global.jwt.dto;
 
-import io.exam.match.auth.global.jwt.constants.JWTConstants;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +13,10 @@ public class TokenDTO {
     private String accessToken;
     private String refreshToken;
     private String type;
+    private Long expired;
+    private String stereoTimeZone;
 
-    public static TokenDTO of(String accessToken, String refreshToken, String type) {
-        return new TokenDTO(accessToken, refreshToken, type);
+    public static TokenDTO of(String accessToken, String refreshToken, String type, Long expired, String stereoTimeZone) {
+        return new TokenDTO(accessToken, refreshToken, type, expired, stereoTimeZone);
     }
 }

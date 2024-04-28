@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/member")
+@RequestMapping("/api/v1/member")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping("/join")
+    @PostMapping("/join/public")
     public ResponseEntity<SimpleJoinResponse> join(@RequestBody MemberJoinRequest joinRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(memberService.join(joinRequest.toEntity()));
     }
