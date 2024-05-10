@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Component
 @RequiredArgsConstructor
@@ -42,10 +43,11 @@ public class TokenProvider implements InitializingBean {
 
     public TokenDTO generateToken(String loginId, Authentication authentication) {
         long now = new Date().getTime();
+        long fixedAccessTokenExpire = now + accessTokenExpire * 1000;
 
         String accessToken = Jwts.builder()
                 .claim("loginId", loginId)
-                .setExpiration(new Date(now + accessTokenExpire * 1000))
+                .setExpiration(new Date(fixedAccessTokenExpire))
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
 
@@ -55,7 +57,7 @@ public class TokenProvider implements InitializingBean {
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
 
-        return TokenDTO.of(accessToken, refreshToken, JWTConstants.BEARER_PREFIX);
+        return TokenDTO.of(accessToken, refreshToken, JWTConstants.BEARER_PREFIX, fixedAccessTokenExpire, TimeZone.getDefault().getDisplayName());
     }
 
     public Authentication getAuthentication(String token) {
