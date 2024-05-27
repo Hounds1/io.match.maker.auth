@@ -23,22 +23,11 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @Value("${jwt.expression.refresh-token-expire}")
-    private Integer refreshTokenExpire;
-
     @PostMapping("/public")
-    public ResponseEntity<AccessToken> auth(@RequestBody AuthRequest authRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<TokenDTO> auth(@RequestBody AuthRequest authRequest) {
         TokenDTO tokenDTO = authService.auth(authRequest);
-        String refreshToken = tokenDTO.getRefreshToken();
 
-        httpServletResponse.addCookie(createCookie("refreshToken",
-                refreshToken,
-                true,
-                true,
-                "/",
-                refreshTokenExpire));
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(AccessToken.of(tokenDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(tokenDTO);
     }
 
     @PostMapping("/reissue")
